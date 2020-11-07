@@ -10,8 +10,11 @@ var linear_vel = Vector2()
 onready var sprite = $Sprite
 onready var animation_tree = $AnimationTree
 onready var playBack = animation_tree.get("parameters/playback");
+onready var disparo = $Sprite/Disparo
+var balas = preload("res://personajes/armas/Bala.tscn")
 
 func _physics_process(delta):
+	var root_scene =  get_tree().current_scene
 	var current_state = playBack.get_current_node()
 	if current_state != "Morir":
 		# Apply gravity
@@ -34,6 +37,10 @@ func _physics_process(delta):
 				target_speed += 1
 		if Input.is_action_just_pressed("attack"):
 			is_attacking = true
+			var bala = balas.instance()
+			root_scene.add_child(bala)
+			bala.position = disparo.global_position
+			bala.shoot(sprite.scale.x)
 		if Input.is_action_just_pressed("jump") && on_floor:
 			linear_vel.y -=JUMP_SPEED 
 			
