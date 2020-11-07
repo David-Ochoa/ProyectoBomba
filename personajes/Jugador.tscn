@@ -181,7 +181,7 @@ states/saltar/position = Vector2( 526, 43 )
 transitions = [ "parado", "avanzar", SubResource( 14 ), "avanzar", "parado", SubResource( 15 ), "parado", "morir", SubResource( 16 ), "avanzar", "morir", SubResource( 17 ), "parado", "saltar", SubResource( 18 ), "avanzar", "saltar", SubResource( 19 ), "saltar", "aterrizar", SubResource( 20 ), "aterrizar", "parado", SubResource( 21 ), "aterrizar", "avanzar", SubResource( 22 ), "avanzar", "atacar", SubResource( 23 ), "atacar", "parado", SubResource( 24 ), "parado", "atacar", SubResource( 25 ), "atacar", "avanzar", SubResource( 26 ) ]
 start_node = "parado"
 end_node = "morir"
-graph_offset = Vector2( 0, -18.5015 )
+graph_offset = Vector2( 0, 110.402 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 
