@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
-const ACC = 25
+const ACC = 20
 const GRAVITY = 12
 
 var direction = 0
@@ -13,6 +13,7 @@ var move_y = 0
 var is_dead := false
 
 var can_move_left := true
+var doble_jump := false
 
 func _physics_process(delta):
 	if is_dead: return
@@ -28,7 +29,7 @@ func _physics_process(delta):
 		move_x = -Main.speed
 #		$Sprites.play("Run")
 	else:
-		move_x = lerp(move_x, 0, 0.3)
+		move_x = lerp(move_x, 0, 0.03)
 		$Sprites.play("Idle")
 	
 	if move_y < 0:
@@ -38,8 +39,11 @@ func _physics_process(delta):
 	if is_on_floor():
 		move_y = 0
 		
+		
+		
 		if Input.is_action_pressed("ui_accept"):
 			move_y = -Main.jump
+			doble_jump = true
 	
 	move_and_slide(Vector2(move_x, move_y), Vector2(0, -1))
 

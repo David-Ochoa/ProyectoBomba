@@ -17,10 +17,10 @@ position = Vector2( 312.542, 275.46 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-margin_left = 144.666
-margin_top = 266.331
-margin_right = 478.666
-margin_bottom = 280.331
+margin_left = 146.0
+margin_top = 265.0
+margin_right = 480.0
+margin_bottom = 285.0
 color = Color( 0.854902, 0.513726, 0.0784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

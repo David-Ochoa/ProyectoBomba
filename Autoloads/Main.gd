@@ -2,5 +2,5 @@ extends Node
 
 var current_level = 1
 
-var jump := 220
-var speed := 70
+var jump := 320
+var speed := 200
