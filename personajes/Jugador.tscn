@@ -1,0 +1,219 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://personajes/jugador.png" type="Texture" id=1]
+[ext_resource path="res://personajes/Jugador.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "atacar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 180, 181, 182, 183, 184 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "aterrizar"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 48, 48 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 1.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.28, 0.58, 0.89, 1.19 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 40, 41, 40, 39 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "morir"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 85, 49, 13, 121 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 36, 36 ]
+}
+
+[sub_resource type="Animation" id=7]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 124, 124 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "atacar"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "aterrizar"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "avanzar"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "morir"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "parado"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "saltar"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+advance_condition = "IsMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "NotIsMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+advance_condition = "IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+advance_condition = "IsDead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+advance_condition = "IsJumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+advance_condition = "IsJumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+advance_condition = "NotIsJumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+advance_condition = "NotIsMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+advance_condition = "IsMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+advance_condition = "IsAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+advance_condition = "NotIsMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+advance_condition = "IsAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+advance_condition = "IsMoving"
+
+[sub_resource type="AnimationNodeStateMachine" id=27]
+states/atacar/node = SubResource( 8 )
+states/atacar/position = Vector2( 526, 398 )
+states/aterrizar/node = SubResource( 9 )
+states/aterrizar/position = Vector2( 526, 139 )
+states/avanzar/node = SubResource( 10 )
+states/avanzar/position = Vector2( 769, 301 )
+states/morir/node = SubResource( 11 )
+states/morir/position = Vector2( 526, 224 )
+states/parado/node = SubResource( 12 )
+states/parado/position = Vector2( 251, 301 )
+states/saltar/node = SubResource( 13 )
+states/saltar/position = Vector2( 526, 43 )
+transitions = [ "parado", "avanzar", SubResource( 14 ), "avanzar", "parado", SubResource( 15 ), "parado", "morir", SubResource( 16 ), "avanzar", "morir", SubResource( 17 ), "parado", "saltar", SubResource( 18 ), "avanzar", "saltar", SubResource( 19 ), "saltar", "aterrizar", SubResource( 20 ), "aterrizar", "parado", SubResource( 21 ), "aterrizar", "avanzar", SubResource( 22 ), "avanzar", "atacar", SubResource( 23 ), "atacar", "parado", SubResource( 24 ), "parado", "atacar", SubResource( 25 ), "atacar", "avanzar", SubResource( 26 ) ]
+start_node = "parado"
+end_node = "morir"
+graph_offset = Vector2( 0, 110.402 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+
+[node name="Jugador" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 36
+frame = 36
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/atacar = SubResource( 2 )
+anims/aterrizar = SubResource( 3 )
+anims/avanzar = SubResource( 4 )
+anims/morir = SubResource( 5 )
+anims/parado = SubResource( 6 )
+anims/saltar = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 27 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+process_mode = 0
+parameters/playback = SubResource( 28 )
+parameters/conditions/IsAttacking = false
+parameters/conditions/IsDead = false
+parameters/conditions/IsJumping = false
+parameters/conditions/IsMoving = false
+parameters/conditions/NotIsJumping = false
+parameters/conditions/NotIsMoving = true
